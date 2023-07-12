@@ -20,7 +20,8 @@ let package = Package(
         .target(
             name: "Pluggy",
             plugins: [
-                .plugin(name: "BobTheBuilder")
+                .plugin(name: "BobTheBuilder"),
+                .plugin(name: "GitLog")
             ]
         ),
         .testTarget(
@@ -72,6 +73,15 @@ let package = Package(
             name: "HandyManny",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
+            ]
+        ),
+
+        // MARK: GitLog
+        .plugin(
+            name: "GitLog",
+            capability: .buildTool(),
+            dependencies: [
+                "HandyManny"
             ]
         ),
     ]

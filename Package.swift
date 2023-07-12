@@ -19,5 +19,22 @@ let package = Package(
         .testTarget(
             name: "PluggyTests",
             dependencies: ["Pluggy"]),
+
+        // Plugins
+
+        // MARK: Chancellor
+            .plugin(
+                // The plugin name is used to locate the `main`
+                // for the plugin, which defaults to `Plugins/<name>/main.swift`
+                name: "Chancellor",
+                // The `capability` lets us specify whether
+                // this will be a `command` plugin or a `build` plugin
+                capability: .command(intent: .custom(
+                    // The verb is passed to `swift package plugin <verb>` to
+                    // invoke the plugin.
+                    verb: "arrest-chancellor",
+                    description: "Arrest the Chancellor.")
+                )
+            )
     ]
 )

@@ -34,7 +34,10 @@ let package = Package(
                     // invoke the plugin.
                     verb: "arrest-chancellor",
                     description: "Arrest the Chancellor.")
-                )
+                ),
+                dependencies: [
+                    "Pluggy"
+                ]
             )
     ]
 )

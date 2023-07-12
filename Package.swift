@@ -18,7 +18,11 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Pluggy"),
+            name: "Pluggy",
+            plugins: [
+                .plugin(name: "BobTheBuilder")
+            ]
+        ),
         .testTarget(
             name: "PluggyTests",
             dependencies: ["Pluggy"]),
@@ -49,6 +53,23 @@ let package = Package(
         ),
         .executableTarget(
             name: "Palpatine",
+            dependencies: [
+                .product(name: "ArgumentParser", package: "swift-argument-parser")
+            ]
+        ),
+
+        // MARK: BobTheBuilder / HandyManny
+        .plugin(
+            name: "BobTheBuilder",
+            capability: .buildTool(),
+            dependencies: [
+                "HandyManny"
+            ]
+        ),
+
+        // We'll pretend that BobTheBuilder contracts out to Handy Manny
+        .executableTarget(
+            name: "HandyManny",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]
